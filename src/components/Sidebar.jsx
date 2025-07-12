@@ -18,7 +18,7 @@ const Sidebar = () => {
   return (
     <aside className="w-full md:max-w-[350px] px-5 py-5 ">
       <div className="description">
-        You can drag these nodes to the pane on the right.
+        Dragable Components
       </div>
       <div className="mt-5 flex justify-between flex-wrap gap-5">
         {/* Map through all the nodes */}
@@ -27,7 +27,7 @@ const Sidebar = () => {
           return (
             <div
               key={node.id}
-              className="flex flex-1 justify-center items-center flex-col max-w-[150px] border-[1px] border-blue-500 px-5 py-5 rounded-md cursor-pointer"
+              className="flex flex-1 justify-center items-center flex-col max-w-auto border-[1px] border-blue-500 px-5 py-5 rounded-md cursor-pointer"
               onDragStart={(event) =>
                 onDragStart(event, node.title.toLowerCase())
               }

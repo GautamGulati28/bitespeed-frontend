@@ -2,40 +2,61 @@ import React, { useContext, useEffect } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { NodeContext } from "./NodeContext";
 
+/**
+ * EditNode component allows editing the label/text of the currently selected node.
+ */
 const EditNode = () => {
-  const { nodeSelected, setNodeSelected, setFlowHaveChanges } =
-    useContext(NodeContext);
+  // Destructure context values for node selection and change tracking
+  const {
+    nodeSelected: selectedNode,
+    setNodeSelected: updateSelectedNode,
+    setFlowHaveChanges: markFlowChanged,
+  } = useContext(NodeContext);
 
+  // Mark the flow as changed whenever the selected node changes
   useEffect(() => {
-    setFlowHaveChanges(true);
-  }, [nodeSelected, setFlowHaveChanges]);
+    markFlowChanged(true);
+  }, [selectedNode, markFlowChanged]);
 
-  const handleChange = (event) => {
-    const updatedLabel = event.target.value;
-    setNodeSelected((prevNode) => ({
-      ...prevNode,
-      data: { ...prevNode.data, label: updatedLabel },
+  /**
+   * Handle textarea changes by updating the selected node's label
+   * @param {object} event - The textarea change event
+   */
+  const handleLabelEdit = (event) => {
+    const newLabel = event.target.value;
+    updateSelectedNode((prev) => ({
+      ...prev,
+      data: { ...prev.data, label: newLabel },
     }));
   };
 
   return (
     <aside className="w-full">
-      <div className="w-full border-b-[1px] px-5 py-3 flex justify-start items-center">
-        <div className="cursor-pointer" onClick={() => setNodeSelected(null)}>
+      {/* Header with back button and title */}
+      <div className="w-full border-b px-5 py-3 flex items-center">
+        <button
+          className="cursor-pointer"
+          onClick={() => updateSelectedNode(null)}
+          aria-label="Back"
+        >
           <IoArrowBack />
-        </div>
+        </button>
         <div className="flex-1 text-center">Message</div>
       </div>
-      <div className="px-5 py-5 border-b-[1px] ">
-        <p className="mb-5">Text</p>
+      {/* Textarea for editing node label */}
+      <div className="px-5 py-5 border-b">
+        <label className="mb-5 block" htmlFor="node-label">
+          Text
+        </label>
         <textarea
+          id="node-label"
           name="text"
-          className="w-full border-[1px]"
+          className="w-full border"
           rows={5}
           cols={30}
-          value={nodeSelected?.data.label}
-          onChange={handleChange}
-        ></textarea>
+          value={selectedNode?.data.label || ""}
+          onChange={handleLabelEdit}
+        />
       </div>
     </aside>
   );

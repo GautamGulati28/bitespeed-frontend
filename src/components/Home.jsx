@@ -2,15 +2,20 @@ import React from "react";
 import Navbar from "./Navbar";
 import ReactflowContainer from "./ReactflowContainer";
 
-const Home = () => {
+/**
+ * MainPage component serves as the landing layout for the application.
+ * It arranges the navigation bar and the flow builder area vertically.
+ */
+const MainPage = () => {
+  // Render the navigation and main builder in a vertical flex container
   return (
-    <div className="flex flex-col h-screen">
-      {/* navbar component */}
+    <section className="flex flex-col h-screen">
+      {/* Top navigation bar */}
       <Navbar />
-      {/* reactflow component */}
+      {/* Main flow builder workspace */}
       <ReactflowContainer />
-    </div>
+    </section>
   );
 };
 
-export default Home;
+export default MainPage;
