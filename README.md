@@ -47,6 +47,13 @@ A minimal, modern **React + Vite** application for building and editing flow dia
 
 ---
 
+## Videos
+[Watch the demo on YouTube](https://youtu.be/3tiS7dYbh6g)
+
+
+---
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -163,10 +170,7 @@ npm run lint
 
 ---
 
-## Images & Videos
-> - [Demo Video](https://github.com/GautamGulati28/bitespeed-frontend/blob/main/demo_video.mp4)
 
----
 
 ## License
 
